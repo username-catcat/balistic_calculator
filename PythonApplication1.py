@@ -5,12 +5,12 @@ power=50
 height=0.0
 dtime=0.001
 temp=0.0
-first= True
 i=0
+first=True
 print (" insert acelleration lasting time")
 ALT=float(input())
 while(True):
-    maxheight=height
+    height1=height
     acelleration=(power/mass)-g
     velocity=velocity+(acelleration*dtime)
     height= height+(velocity*dtime)
@@ -19,9 +19,11 @@ while(True):
     if (temp>=ALT):
         power=0
         
-    if(maxheight>height and first):
-        print ("max heigth" + str(maxheight))
+    if(height1>height and first):
+        print ("max heigth" + str(height1))
+        maxheight=height1
         first=False
+
     if (height<=0 and i>1):
         print (str(velocity) + "    " + str(maxheight))
         break
