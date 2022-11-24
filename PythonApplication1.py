@@ -13,7 +13,7 @@ ALT=float(input())
 print ("insert angle on start")
 angle=float(input())
 angle=math.radians(angle)
-g=10
+g=9.81
 horizontalvelocity=0.0
 verticalvelocity=0.0
 height=0.0
