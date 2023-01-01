@@ -1,4 +1,4 @@
-from shutil import get_archive_formats
+rom shutil import get_archive_formats
 from socket import gaierror
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -43,14 +43,6 @@ class output:
         plt.xlabel('total time')
         plt.title('height by time')
         plt.show()
-class aerial:
-    @staticmethod
-    def resistance(Cx,volume,airdensity,verticalvelocity,horizontalvelocity,):
-        R=Cx*(volume**(2/3))*(airdensity*((horizontalvelocity**2)+(verticalvelocity**2))/2)
-        return R
-    @staticmethod
-    def calculate(value):
-        value[0]
 print("insert rocket mass (kg)")
 mass=float(input())
 print("insert fuel mass (kg)")
@@ -94,9 +86,14 @@ while(height>=0):
     maxvelocity=max(maxvelocity, math.sqrt((horizontalvelocity**2)+(verticalvelocity**2)))
     maxacelleration=max(maxacelleration, math.sqrt((horizontalacelleration**2)+(verticalacelleration**2)))
     maxheight=max(maxheight, height)
-    #R=Cx*(volume**(2/3))*(airdensity*((horizontalvelocity**2)+(verticalvelocity**2))/2)
-    verticalacelleration=power*math.cos(angle)/mass-g
-    horizontalacelleration=power*math.sin(angle)/mass
+
+    if(iteration>1):
+        verticalacelleration=(power*math.cos(angle)-(R*(verticalvelocity/math.sqrt((horizontalvelocity**2)+(verticalvelocity**2))))/mass)-g
+        horizontalacelleration=power*math.sin(angle)-(R*(horizontalvelocity/math.sqrt((horizontalvelocity**2)+(verticalvelocity**2))))/mass
+        R=Cx*((volume**(2/3))*(airdensity*((horizontalvelocity**2)+(verticalvelocity**2))/2))
+    else:
+        verticalacelleration=power*math.cos(angle)/mass-g
+        horizontalacelleration=power*math.sin(angle)/mass
     horizontalvelocity=horizontalvelocity+(horizontalacelleration*dtime)
     verticalvelocity=verticalvelocity+(verticalacelleration*dtime)
     height= height+(verticalvelocity*dtime)
@@ -114,3 +111,4 @@ while(height>=0):
     iteration+=1
 print ("max velocity " + str(maxvelocity) + "    max height " + str(maxheight) + "    max acelleration " + str(maxacelleration)+ "    flight time " + str(time)+ "    distance " + str(distance))
 output.every_value(tirray,aarray,verray,herray)
+output.trace(derray,herray)
