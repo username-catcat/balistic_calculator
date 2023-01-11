@@ -1,4 +1,4 @@
-rom shutil import get_archive_formats
+from shutil import get_archive_formats
 from socket import gaierror
 import matplotlib as mpl
 import matplotlib.pyplot as plt
