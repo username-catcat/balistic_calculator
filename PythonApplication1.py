@@ -54,6 +54,7 @@ while(height>=0):
     mass=mass-dfuel
     if (time>=ALT and power!=0):
         power=0
+        dfuel=0
     iteration+=1
 print ("max velocity " + str(maxvelocity) + "    max height " + str(maxheight) + "    max acelleration " + str(maxacelleration)+ "    flight time " + str(time)+ "    distance " + str(distance))
 plt.plot(tirray,verray, label='velocity')
