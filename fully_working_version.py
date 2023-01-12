@@ -91,7 +91,7 @@ while(height>=0):
         verticalacelleration=(power*math.cos(angle)-(R*(verticalvelocity/math.sqrt((horizontalvelocity**2)+(verticalvelocity**2))))/mass)-g
         horizontalacelleration=power*math.sin(angle)-(R*(horizontalvelocity/math.sqrt((horizontalvelocity**2)+(verticalvelocity**2))))/mass
         R=Cx*((volume**(2/3))*(airdensity*((horizontalvelocity**2)+(verticalvelocity**2))/2))
-    else:
+    else: 
         verticalacelleration=power*math.cos(angle)/mass-g
         horizontalacelleration=power*math.sin(angle)/mass
     horizontalvelocity=horizontalvelocity+(horizontalacelleration*dtime)
@@ -108,6 +108,7 @@ while(height>=0):
     mass=mass-dfuel
     if (time>=ALT and power!=0):
         power=0
+        dfuel=0 
     iteration+=1
 print ("max velocity " + str(maxvelocity) + "    max height " + str(maxheight) + "    max acelleration " + str(maxacelleration)+ "    flight time " + str(time)+ "    distance " + str(distance))
 output.every_value(tirray,aarray,verray,herray)
