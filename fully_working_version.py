@@ -4,8 +4,6 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import math
-
-
 class output:
     @staticmethod
     def every_value(tirray, aarray, verray, herray):
@@ -49,8 +47,6 @@ class output:
         plt.xlabel("total time")
         plt.title("height by time")
         plt.show()
-
-
 print("insert rocket mass (kg)")
 mass = float(input())
 print("insert fuel mass (kg)")
@@ -62,7 +58,7 @@ ALT = float(input())
 print("insert angle on start")
 angle = float(input())
 angle = math.radians(angle)
-g = 9.8
+g = 9.81
 horizontalvelocity = 0.0
 verticalvelocity = 0.0
 height = 0.0
@@ -91,42 +87,14 @@ airdensity = 1.3
 volume = math.pi * (r**2) * h
 R = 0
 while height >= 0:
-    maxvelocity = max(
-        maxvelocity, math.sqrt((horizontalvelocity**2) + (verticalvelocity**2))
-    )
-    maxacelleration = max(
-        maxacelleration,
-        math.sqrt((horizontalacelleration**2) + (verticalacelleration**2)),
-    )
+    maxvelocity = max(maxvelocity, math.sqrt((horizontalvelocity**2) + (verticalvelocity**2)))
+    maxacelleration = max(maxacelleration, math.sqrt((horizontalacelleration**2) + (verticalacelleration**2)))
     maxheight = max(maxheight, height)
 
     if iteration > 1:
-        verticalacelleration = (
-            power * math.cos(angle)
-            - (
-                R
-                * (
-                    verticalvelocity
-                    / math.sqrt((horizontalvelocity**2) + (verticalvelocity**2))
-                )
-            )
-            / mass
-        ) - g
-        horizontalacelleration = (
-            power * math.sin(angle)
-            - (
-                R
-                * (
-                    horizontalvelocity
-                    / math.sqrt((horizontalvelocity**2) + (verticalvelocity**2))
-                )
-            )
-            / mass
-        )
-        R = Cx * (
-            (volume ** (2 / 3))
-            * (airdensity * ((horizontalvelocity**2) + (verticalvelocity**2)) / 2)
-        )
+        verticalacelleration = (power * math.cos(angle)- (R* (verticalvelocity/ math.sqrt((horizontalvelocity**2) + (verticalvelocity**2))))/ mass) - g
+        horizontalacelleration = (power * math.sin(angle)- (R* (horizontalvelocity/ math.sqrt((horizontalvelocity**2) + (verticalvelocity**2))))/ mass)
+        R = Cx * ((volume ** (2 / 3))* (airdensity * ((horizontalvelocity**2) + (verticalvelocity**2)) / 2))
     else:
         verticalacelleration = power * math.cos(angle) / mass - g
         horizontalacelleration = power * math.sin(angle) / mass
@@ -135,14 +103,6 @@ while height >= 0:
     height = height + (verticalvelocity * dtime)
     distance = distance + (horizontalvelocity * dtime)
     time += dtime
-    value = [
-        verticalacelleration,
-        verticalvelocity,
-        horizontalacelleration,
-        horizontalvelocity,
-        height,
-        distance,
-    ]
     herray.append(height)
     derray.append(distance)
     aarray.append(verticalacelleration)
