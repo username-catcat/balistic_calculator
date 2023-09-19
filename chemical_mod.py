@@ -61,18 +61,21 @@ print("insert fuel mass (kg)")
 fuel = float(input())
 num=2
 if chemistry :
-    print("\navailable compositions: ")
-    for cellObj in ws['A2':'A6']:
-      for cell in cellObj:
-              print(cell.value)
-    print("\n select composition by name")
+    print("select composition state")
+    state = input()
+    print("\navailable compositions:")
+    while(ws.cell(row=num, column=1).value!= 0):
+        if (ws.cell(row=num, column=9).value == state): print(ws.cell(row=num, column=1).value)
+        num+=1
+    num=2
+    print("\nselect composition by name")
     name=input()
     while(ws.cell(row=num, column=1).value!=name):
       num+=1
-    total_impulse = float(ws.cell(row=num, column=8).value)
+    specific_impulse = float(ws.cell(row=num, column=8).value)
 else :
-    print("insert total impulse (N*s)")
-    total_impulse = float(input())
+    print("insert specific impulse (N*s)")
+    specific_impulse = float(input())
 print("insert fuel burning time (s)")
 ALT = float(input())
 print("insert angle on start")
@@ -96,7 +99,7 @@ kin= [
 verticalacelleration = 0.0
 horizontalacelleration = 0.0
 distance = 0.0
-power = total_impulse / ALT
+power = specific_impulse / ALT
 mass = mass + fuel
 dfuel = fuel / ALT * dtime
 maxheight = height
