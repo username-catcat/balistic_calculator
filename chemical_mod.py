@@ -51,6 +51,8 @@ class output:
 file =("C:\database\database.xlsx")
 wb = load_workbook(file)
 ws = wb.active
+oxidizer=""
+lfuel=""
 print("would you like to use chemisty module?")
 chemistry = bool(input())
 print("insert rocket height (m)")
@@ -60,22 +62,39 @@ mass = float(input())
 print("insert fuel mass (kg)")
 fuel = float(input())
 num=2
+formula=""
 if chemistry :
     print("select composition state")
     state = input()
     print("\navailable compositions:")
-    while(ws.cell(row=num, column=1).value!= 0):
-        if (ws.cell(row=num, column=9).value == state): print(ws.cell(row=num, column=1).value)
-        num+=1
-    num=2
-    print("\nselect composition by name")
-    name=input()
-    while(ws.cell(row=num, column=1).value!=name):
-      num+=1
+    if (state == "solid"):
+        while(ws.cell(row=num, column=1).value!= 0):
+            if (ws.cell(row=num, column=9).value == state): print(ws.cell(row=num, column=1).value)
+            num+=1
+        num=2
+        print("\nselect composition by name")
+        name=input()
+        while(ws.cell(row=num, column=1).value!=name):num+=1
+    else:
+        while(ws.cell(row=num, column=1).value!= 0):
+            if (ws.cell(row=num, column=9).value == state): 
+                print(ws.cell(row=num, column=2).value, ws.cell(row=num, column=3).value)
+            num+=1
+        num=2
+        print("\nselect composition by formula")
+        formula=input()
+        formula=formula.split()
+        lfuel= formula[1]
+        oxidizer=formula[0]
+        while(ws.cell(row=num, column=1).value!=0):
+            if (ws.cell(row=num, column=2).value!=oxidizer):
+                if(ws.cell(row=num, column=3).value!=lfuel):break
+            num+=1
     specific_impulse = float(ws.cell(row=num, column=8).value)
 else :
     print("insert specific impulse (N*s)")
     specific_impulse = float(input())
+#temporary solution, while mass flow rate is not available
 print("insert fuel burning time (s)")
 ALT = float(input())
 print("insert angle on start")
