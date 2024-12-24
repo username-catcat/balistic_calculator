@@ -54,7 +54,7 @@ ws = wb.active
 oxidizer=""
 lfuel=""
 print("would you like to use chemisty module?")
-chemistry = bool(input())
+chemistry = int(input())
 print("insert rocket height (m)")
 h = float(input())
 print("insert rocket mass (kg)")
@@ -63,7 +63,7 @@ print("insert fuel mass (kg)")
 fuel = float(input())
 num=2
 formula=""
-if chemistry :
+if chemistry == True :
     print("select composition state")
     state = input()
     print("\navailable compositions:")
